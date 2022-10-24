@@ -7,13 +7,9 @@
 const hourWorkedDay = 8;
 const billableDays = 22;
 
-dayRate = () => {
-  return hourlyRate * hourWorkedDay;
-};
+dayRate = hourlyRate => hourlyRate * hourWorkedDay;
 
-daysInBudget = (budget, hourlyRate) => {
-  return Math.floor(budget / dayRate(hourlyRate));
-};
+daysInBudget = (budget, hourlyRate) =>  Math.floor(budget / dayRate(hourlyRate));
 
 priceWithMonthlyDiscount = (hourlyRate, numberDays, monthlyDiscountRate) => {
   const months = Math.floor(numberDays / billableDays);
