@@ -1,5 +1,12 @@
+import fs from 'fs';
 import chalk from 'chalk';
 
-console.log(chalk.red("Ola chalck"));
+// dont work with arrow function, why?
+function getFile(pathFile) {
+    const encoding = 'utf-8';
+    fs.readFile(pathFile, encoding, (_, text) => {
+        console.log(chalk.green(text));
+    });
+}
 
-console.log('olá mundo');
+getFile('./arquivos/texto.md');
