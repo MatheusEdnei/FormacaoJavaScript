@@ -1,14 +1,18 @@
-import fs from 'fs';
-import chalk from 'chalk';
+import fs from "fs";
+import chalk from "chalk";
 
 function treatsErro(erro) {
-    throw new Error(chalk.red(erro.code, ' did not find the file'));
+  throw new Error(chalk.red(erro.code, " did not find the file"));
 }
 
 async function getFile(pathFile) {
-    const encoding = 'utf-8';
+  try {
+    const encoding = "utf-8";
     const text = await fs.promises.readFile(pathFile, encoding);
     console.log(chalk.green(text));
+  } catch (erro) {
+    treatsErro(erro);
+  }
 }
 
 // promises with then()
@@ -31,4 +35,4 @@ async function getFile(pathFile) {
 //     });
 // }
 
-getFile('./arquivos/texto.md');
+getFile("./arquivos/texto.md");
