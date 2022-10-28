@@ -5,12 +5,19 @@ function treatsErro(erro) {
     throw new Error(chalk.red(erro.code, ' did not find the file'));
 }
 
-function getFile(pathFile) {
+async function getFile(pathFile) {
     const encoding = 'utf-8';
-    fs.promises.readFile(pathFile, encoding)
-        .then((texto) => console.log(chalk.green(texto)))
-        .catch(treatsErro);
+    const text = await fs.promises.readFile(pathFile, encoding);
+    console.log(chalk.green(text));
 }
+
+// promises with then()
+// function getFile(pathFile) {
+//     const encoding = 'utf-8';
+//     fs.promises.readFile(pathFile, encoding)
+//         .then((texto) => console.log(chalk.green(texto)))
+//         .catch(treatsErro);
+// }
 
 // dont work with arrow function, why?
 // function getFile(pathFile) {
