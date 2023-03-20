@@ -4,6 +4,7 @@ import Admin from './Admin.js'
 
 const novoAdmin = new Admin('Rodrigo', 'r@r.com', '2021-01-01')
 console.log(novoAdmin.criaCurso('JS', 20))
+console.log(novoAdmin.nome)
 
 
 const docente = new Docente ('Mariana', 'm@m.com', '2021-01-01')
