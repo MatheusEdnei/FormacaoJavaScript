@@ -4,16 +4,23 @@ export default class User {
     #nascimento
     #role
     #ativo
-    constructor( nome, email, nascimento, role, ativo = true) {
+    #sobrenome
+
+    constructor( nome, sobrenome, email, nascimento, role, ativo = true) {
         this.#nome = nome
         this.#email = email
         this.#nascimento = nascimento
         this.#role = role || 'estudante'
         this.#ativo = ativo
+        this.#sobrenome = sobrenome
     }
 
     get nome() {
-        return this.#nome
+        return `${this.#nome} ${this.#sobrenome}`
+    }
+
+    get sobrenome() {
+        return this.#sobrenome
     }
 
     get email () {
@@ -32,6 +39,30 @@ export default class User {
         return this.#ativo
     }
 
+    set nome (nome) {
+        if (nome === '') throw new Error('formato inválido')
+        let [novoNome, ...sobrenome] = nome.split(" ")
+        sobrenome = sobrenome.join(' ')
+        this.#nome = novoNome
+        this.#sobrenome = sobrenome
+    }
+
+    set email (email) {
+        this.#email = email
+    }
+
+    set nascimento (nascimento) {
+        this.#nascimento = nascimento
+    }
+
+    set role (role) {
+        this.#role = role
+    }
+
+    set ativo (ativo) {
+        this.#ativo = ativo
+    }
+
     #montaObjUser() {
         return ({
             nome: this.#nome,
@@ -43,7 +74,6 @@ export default class User {
     }
 
     exibirInfos() {
-        const objUser = this.#montaObjUser()
-        return `${objUser.nome}, ${objUser.email}, ${objUser.nascimento},${objUser.role}, ${objUser.ativo}`
+        return `${this.nome}, ${this.email}, ${this.nascimento},${this.role}, ${this.ativo}`
     }
 }
